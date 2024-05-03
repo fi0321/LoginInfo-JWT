@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.LoginInfo.LoginInfo.Score.ScoreRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,7 +22,8 @@ public class LoginInfoController {
 
 
 
-  public LoginInfoController(LoginInfoRepository loginInfoRepository, UserInfoRepository userInfoRepository) {
+  public LoginInfoController(LoginInfoRepository loginInfoRepository,
+      UserInfoRepository userInfoRepository) {
     this.userInfoRepository = userInfoRepository;
     this.loginInfoRepository = loginInfoRepository;
   }
@@ -36,40 +36,41 @@ public class LoginInfoController {
     return loginInfoRepository.save(loginInfo);
 
   }
+
   @PostMapping("/Login")
   public UserInfo post(@RequestBody LoginDto loginDto) {
     // TODO: process POST request
-    var loginInfo=loginInfoRepository.findByUsername(loginDto.username());
+    var loginInfo = loginInfoRepository.findByUsername(loginDto.username());
     System.out.println(loginInfo);
     System.out.println(loginDto.password());
     System.out.println(loginInfo.getPassword());
-    if(loginInfo!= null &&loginInfo.getPassword().equals(loginDto.password()))
-    {
+    if (loginInfo != null && loginInfo.getPassword().equals(loginDto.password())) {
       System.out.println("checking");
-      var userinfo= loginInfo.getUserInfo();
+      var userinfo = loginInfo.getUserInfo();
       userinfo.setLoginInfo(null);
       return userinfo;
     }
-      return null;
+    return null;
 
   }
 
 
 
-   @PostMapping("/CreateAccount")
-   public UserInfo post(@RequestBody CreateAccountDto createAccountDto) {
-   // TODO: process POST request
-     var userinfo= new UserInfo(createAccountDto.firstName(), createAccountDto.lastName());
-     var logininfo= new LoginInfo(createAccountDto.username(), createAccountDto.email(), createAccountDto.password());
-     var savedUserInformation= userInfoRepository.save(userinfo);
-     logininfo.setUserInfo(savedUserInformation);
-     loginInfoRepository.save(logininfo);
+  @PostMapping("/CreateAccount")
+  public UserInfo post(@RequestBody CreateAccountDto createAccountDto) {
+    // TODO: process POST request
+    var userinfo = new UserInfo(createAccountDto.firstName(), createAccountDto.lastName());
+    var logininfo = new LoginInfo(createAccountDto.username(), createAccountDto.email(),
+        createAccountDto.password());
+    var savedUserInformation = userInfoRepository.save(userinfo);
+    logininfo.setUserInfo(savedUserInformation);
+    loginInfoRepository.save(logininfo);
 
 
-     return savedUserInformation;
+    return savedUserInformation;
 
 
-   }
+  }
 
 
 

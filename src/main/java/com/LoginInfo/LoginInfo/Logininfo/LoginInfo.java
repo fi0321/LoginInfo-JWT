@@ -3,7 +3,6 @@ package com.LoginInfo.LoginInfo.Logininfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.LoginInfo.LoginInfo.Score.Score;
 import com.LoginInfo.LoginInfo.Userinfo.UserInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -20,9 +19,6 @@ public class LoginInfo {
   @Column(unique = true)
   private String email;
   private String password;
-  @OneToMany(mappedBy = "loginInfo")
-  @JsonManagedReference
-  private List<Score> scores;
 
 
 
@@ -38,7 +34,6 @@ public class LoginInfo {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.scores=new ArrayList<>();
   }
 
   public Integer getId() {
@@ -73,13 +68,7 @@ public class LoginInfo {
     this.password = password;
   }
 
-  public List<Score> getScores() {
-    return scores;
-  }
 
-  public void setScores(List<Score> scores) {
-    this.scores = scores;
-  }
 
   public UserInfo getUserInfo() {
     return userInfo;
