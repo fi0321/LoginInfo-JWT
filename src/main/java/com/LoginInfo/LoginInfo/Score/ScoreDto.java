@@ -1,4 +1,4 @@
-package com.LoginInfo.LoginInfo;
+package com.LoginInfo.LoginInfo.Score;
 
 public record ScoreDto(int score, Integer loginInfoId) {
 

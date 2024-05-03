@@ -1,4 +1,4 @@
-package com.LoginInfo.LoginInfo;
+package com.LoginInfo.LoginInfo.Userinfo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,10 +1,11 @@
-package com.LoginInfo.LoginInfo;
+package com.LoginInfo.LoginInfo.Logininfo;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LoginInfoRepository extends JpaRepository<LoginInfo, Integer> {
 
- List<LoginInfo> findAllByUsername(String username);
+  LoginInfo findByUsername(String username);
 
 }
