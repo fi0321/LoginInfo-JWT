@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/LoginInfo
+    username: postgres
+    password: Synopsis@786
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  security:
+    jwt:
+      security-key: 5BE2B6777F49FC5D00D855EB5023FC29E8F1E988D419236B23FA6C0924D42E46
+      expiration: 8640000
